@@ -39,7 +39,8 @@ window.I18N = {
     "projects.title": "Proyectos",
     "projects.intro": "Dos proyectos que resumen hacia dónde voy: inteligencia artificial con impacto real, en investigación y en competición.",
 
-    "p1.imgAlt": "Proyecto DemDetect",
+    "p1.imgAlt": "Pol junto al póster científico del proyecto DemDetect",
+    "p1.zoom": "Ampliar imagen: póster de DemDetect",
     "p1.kicker": "Investigación · Trabajo de Fin de Máster · URV",
     "p1.summary": "Inteligencia artificial para la detección temprana de la demencia mediante olfatometría.",
     "p1.factRole": "Rol",
@@ -51,7 +52,8 @@ window.I18N = {
     "p1.role": "Pendiente de redactar: tu contribución concreta dentro del proyecto.",
     "p1.link": "Web del proyecto",
 
-    "p2.imgAlt": "Equipo en el hackathon More Than a Hack, Talent Arena 2026",
+    "p2.imgAlt": "Presentación del equipo en el escenario Frontier Lab durante More Than a Hack, Talent Arena 2026",
+    "p2.zoom": "Ampliar imagen: presentación en More Than a Hack",
     "p2.badge": "puesto",
     "p2.kicker": "Hackathon · Talent Arena 2026",
     "p2.summary": "Tactical RAG: convertir datos complejos en decisiones tácticas en el fútbol.",
@@ -94,7 +96,12 @@ window.I18N = {
     "contact.copyFail": "No se pudo copiar",
     "contact.cv": "Descargar CV",
 
-    "footer.top": "Volver arriba"
+    "footer.top": "Volver arriba",
+
+    "zoom.hint": "Ampliar",
+    "zoom.toggle": "Zoom",
+    "zoom.close": "Cerrar",
+    "zoom.dialog": "Imagen ampliada"
   },
 
   en: {
@@ -130,7 +137,8 @@ window.I18N = {
     "projects.title": "Projects",
     "projects.intro": "Two projects that sum up where I’m heading: artificial intelligence with real-world impact, in research and in competition.",
 
-    "p1.imgAlt": "DemDetect project",
+    "p1.imgAlt": "Pol next to the DemDetect research poster",
+    "p1.zoom": "Enlarge image: DemDetect poster",
     "p1.kicker": "Research · Master’s thesis · URV",
     "p1.summary": "Artificial intelligence for the early detection of dementia through olfactometry.",
     "p1.factRole": "Role",
@@ -142,7 +150,8 @@ window.I18N = {
     "p1.role": "To be written: your specific contribution to the project.",
     "p1.link": "Project website",
 
-    "p2.imgAlt": "Team at the More Than a Hack hackathon, Talent Arena 2026",
+    "p2.imgAlt": "Team presenting on the Frontier Lab stage at More Than a Hack, Talent Arena 2026",
+    "p2.zoom": "Enlarge image: More Than a Hack presentation",
     "p2.badge": "place",
     "p2.kicker": "Hackathon · Talent Arena 2026",
     "p2.summary": "Tactical RAG: turning complex data into tactical decisions in football.",
@@ -185,6 +194,11 @@ window.I18N = {
     "contact.copyFail": "Couldn’t copy",
     "contact.cv": "Download CV",
 
-    "footer.top": "Back to top"
+    "footer.top": "Back to top",
+
+    "zoom.hint": "Enlarge",
+    "zoom.toggle": "Zoom",
+    "zoom.close": "Close",
+    "zoom.dialog": "Enlarged image"
   }
 };

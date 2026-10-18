@@ -104,17 +104,9 @@
             </div>
           </div>
 
-          <!--
-            FOTO PERSONAL
-            Sustituye el archivo assets/img/pol.jpg (retrato vertical 4:5, ~900×1125 px, < 200 KB).
-            Mientras no exista, se muestra el marcador de posición.
-          -->
+          <!-- FOTO PERSONAL: assets/img/pol.jpg (cuadrada; idealmente ≥ 800×800 px) -->
           <figure class="hero__photo media reveal">
-            <img src="assets/img/pol.jpg" width="900" height="1125" alt="Retrato de Pol Pujol Santaella" data-i18n-attr="alt:hero.photoAlt" decoding="async" />
-            <figcaption class="media__placeholder" aria-hidden="true">
-              <span class="media__placeholder-label">assets/img/pol.jpg</span>
-              <span class="media__placeholder-hint">4:5 · 900 × 1125</span>
-            </figcaption>
+            <img src="assets/img/pol.jpg" width="400" height="400" alt="Retrato de Pol Pujol Santaella" data-i18n-attr="alt:hero.photoAlt" decoding="async" />
           </figure>
         </div>
 
@@ -138,17 +130,13 @@
           </header>
 
           <!-- Proyecto 01 · DemDetect -->
-          <article class="project" aria-labelledby="p1-title">
-            <!--
-              IMAGEN DEMDETECT
-              Coloca la imagen en assets/img/demdetect.jpg (horizontal 16:10, ~1600×1000 px, < 300 KB).
-            -->
-            <figure class="project__media media reveal">
-              <img src="assets/img/demdetect.jpg" width="1600" height="1000" alt="Proyecto DemDetect" data-i18n-attr="alt:p1.imgAlt" loading="lazy" decoding="async" />
-              <figcaption class="media__placeholder" aria-hidden="true">
-                <span class="media__placeholder-label">assets/img/demdetect.jpg</span>
-                <span class="media__placeholder-hint">16:10 · 1600 × 1000</span>
-              </figcaption>
+          <article class="project project--portrait" aria-labelledby="p1-title">
+            <!-- IMAGEN DEMDETECT: assets/img/demdetect.jpg (vertical). Se recorta en la tarjeta y se ve completa al ampliar. -->
+            <figure class="project__media project__media--portrait media reveal">
+              <button class="zoom" type="button" data-zoom aria-label="Ampliar imagen: póster de DemDetect" data-i18n-attr="aria-label:p1.zoom">
+                <img src="assets/img/demdetect.jpg" width="480" height="853" alt="Pol junto al póster científico del proyecto DemDetect" data-i18n-attr="alt:p1.imgAlt" loading="lazy" decoding="async" />
+                <span class="zoom__hint" aria-hidden="true"><span data-i18n="zoom.hint">Ampliar</span> ⤢</span>
+              </button>
             </figure>
 
             <div class="project__body">
@@ -185,16 +173,12 @@
 
           <!-- Proyecto 02 · More Than a Hack -->
           <article class="project project--reverse" aria-labelledby="p2-title">
-            <!--
-              IMAGEN MORE THAN A HACK
-              Coloca la imagen en assets/img/more-than-a-hack.jpg (horizontal 16:10, ~1600×1000 px, < 300 KB).
-            -->
-            <figure class="project__media media reveal">
-              <img src="assets/img/more-than-a-hack.jpg" width="1600" height="1000" alt="Equipo en el hackathon More Than a Hack, Talent Arena 2026" data-i18n-attr="alt:p2.imgAlt" loading="lazy" decoding="async" />
-              <figcaption class="media__placeholder" aria-hidden="true">
-                <span class="media__placeholder-label">assets/img/more-than-a-hack.jpg</span>
-                <span class="media__placeholder-hint">16:10 · 1600 × 1000</span>
-              </figcaption>
+            <!-- IMAGEN MORE THAN A HACK: assets/img/more-than-a-hack.jpg (horizontal 3:2) -->
+            <figure class="project__media project__media--landscape media reveal">
+              <button class="zoom" type="button" data-zoom aria-label="Ampliar imagen: presentación en More Than a Hack" data-i18n-attr="aria-label:p2.zoom">
+                <img src="assets/img/more-than-a-hack.jpg" width="480" height="320" alt="Presentación del equipo en el escenario Frontier Lab durante More Than a Hack, Talent Arena 2026" data-i18n-attr="alt:p2.imgAlt" loading="lazy" decoding="async" />
+                <span class="zoom__hint" aria-hidden="true"><span data-i18n="zoom.hint">Ampliar</span> ⤢</span>
+              </button>
               <span class="badge" aria-hidden="true"><span class="badge__big">3.º</span><span data-i18n="p2.badge">puesto</span></span>
             </figure>
 
@@ -370,6 +354,20 @@
         <a href="#top" class="site-footer__top"><span data-i18n="footer.top">Volver arriba</span> <span aria-hidden="true">↑</span></a>
       </div>
     </footer>
+
+    <!-- Visor de imágenes de proyectos -->
+    <dialog class="lightbox" id="lightbox" aria-label="Imagen ampliada" data-i18n-attr="aria-label:zoom.dialog">
+      <div class="lightbox__stage" id="lightbox-stage">
+        <img class="lightbox__img" id="lightbox-img" alt="" />
+      </div>
+      <div class="lightbox__bar">
+        <p class="lightbox__caption" id="lightbox-caption"></p>
+        <button class="control" id="lightbox-zoom" type="button" aria-pressed="false">
+          <span data-i18n="zoom.toggle">Zoom</span>
+        </button>
+        <button class="control" id="lightbox-close" type="button" aria-label="Cerrar" data-i18n-attr="aria-label:zoom.close">✕</button>
+      </div>
+    </dialog>
 
     <script src="scripts/i18n.js"></script>
     <script src="scripts/scripts.js"></script>

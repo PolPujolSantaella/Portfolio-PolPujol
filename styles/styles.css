@@ -439,7 +439,7 @@ mark {
   transform: translate(2px, -2px);
 }
 
-/* ---------- Media + marcador de posición ---------- */
+/* ---------- Media ---------- */
 .media {
   position: relative;
   overflow: hidden;
@@ -447,45 +447,51 @@ mark {
   border-radius: var(--radius);
 }
 .media img {
-  position: relative;
-  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.media.is-missing img {
-  display: none;
+
+/* Botón que envuelve las imágenes ampliables */
+.zoom {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
 }
-.media__placeholder {
+.zoom:focus-visible {
+  outline-offset: -4px;
+}
+.zoom__hint {
   position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 0.25rem;
-  padding: 1.25rem;
+  z-index: 2;
+  left: 1rem;
+  bottom: 1rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: var(--fg);
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--fg-muted);
-  background-image:
-    linear-gradient(var(--rule) 1px, transparent 1px),
-    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
-  background-size: 2rem 2rem;
-  background-position: -1px -1px;
+  opacity: 0;
+  transform: translateY(0.25rem);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
 }
-.media__placeholder::before {
-  content: "+";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-display);
-  font-size: 4rem;
-  line-height: 1;
-  color: var(--accent);
+.zoom:hover .zoom__hint,
+.zoom:focus-visible .zoom__hint {
+  opacity: 1;
+  transform: none;
 }
-.media__placeholder-label {
-  color: var(--fg);
+@media (hover: none) {
+  .zoom__hint {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ---------- Hero ---------- */
@@ -544,15 +550,19 @@ mark {
   margin-top: 2.5rem;
 }
 
+/* Foto cuadrada (400×400): no se amplía por encima de su tamaño real */
 .hero__photo {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   width: 100%;
-  max-width: 26rem;
+  max-width: 25rem;
   justify-self: end;
+}
+.hero__photo img {
+  object-position: center 30%;
 }
 @media (max-width: 51.99rem) {
   .hero__photo {
-    max-width: 20rem;
+    max-width: 18rem;
     justify-self: start;
   }
 }
@@ -649,6 +659,10 @@ mark {
   .project {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   }
+  /* Imagen vertical: columna de imagen más estrecha */
+  .project--portrait {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
   .project--reverse .project__media {
     order: 2;
   }
@@ -659,7 +673,20 @@ mark {
 }
 
 .project__media {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 3 / 2;
+}
+/* DemDetect (480×853): recorte 4:5 centrado en el póster; completa en el visor */
+.project__media--portrait {
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  max-width: 30rem;
+}
+.project__media--portrait img {
+  object-position: center top;
+}
+/* More Than a Hack (480×320): proporción nativa 3:2 */
+.project__media--landscape {
+  aspect-ratio: 3 / 2;
 }
 .project__media img {
   transition: transform 1.2s var(--ease);
@@ -989,6 +1016,72 @@ mark {
 }
 .site-footer__top:hover {
   color: var(--accent);
+}
+
+/* ---------- Visor de imágenes ---------- */
+.lightbox {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #e9ede9;
+}
+.lightbox::backdrop {
+  background: rgba(5, 7, 6, 0.92);
+}
+.lightbox[open] {
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+.lightbox__stage {
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 1rem;
+  cursor: zoom-in;
+}
+.lightbox__img {
+  max-width: 100%;
+  max-height: calc(100dvh - 6rem);
+  width: auto;
+  height: auto;
+  border-radius: var(--radius);
+}
+.lightbox.is-zoomed .lightbox__stage {
+  place-items: start;
+  cursor: zoom-out;
+}
+.lightbox.is-zoomed .lightbox__img {
+  max-width: none;
+  max-height: none;
+  margin: auto;
+}
+.lightbox__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem var(--gutter) 1rem;
+  background: rgba(5, 7, 6, 0.92);
+}
+.lightbox__caption {
+  margin-right: auto;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #9aa49e;
+}
+.lightbox .control {
+  border-color: #2c3430;
+  color: #e9ede9;
+}
+.lightbox .control:hover,
+.lightbox .control[aria-pressed="true"] {
+  border-color: #3fe07f;
+  color: #3fe07f;
 }
 
 /* ---------- Animaciones de entrada ----------

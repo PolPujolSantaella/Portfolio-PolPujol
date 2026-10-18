@@ -134,11 +134,60 @@
     document.querySelectorAll('main section[id]').forEach((s) => sectionObserver.observe(s));
   }
 
-  /* ---------- Imágenes pendientes → marcador de posición ---------- */
-  document.querySelectorAll('.media img').forEach((img) => {
-    const markMissing = () => img.closest('.media').classList.add('is-missing');
-    if (img.complete && img.naturalWidth === 0) markMissing();
-    else img.addEventListener('error', markMissing, { once: true });
+  /* ---------- Visor de imágenes con zoom ---------- */
+  const lightbox = document.getElementById('lightbox');
+  const lbStage = document.getElementById('lightbox-stage');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbCaption = document.getElementById('lightbox-caption');
+  const lbZoom = document.getElementById('lightbox-zoom');
+  const lbClose = document.getElementById('lightbox-close');
+  const ZOOM = 2.5;
+  let lastTrigger = null;
+
+  function setZoom(on, point) {
+    if (on) {
+      // Ampliación relativa al tamaño ajustado a pantalla
+      const fitWidth = lbImg.getBoundingClientRect().width;
+      const rect = lbImg.getBoundingClientRect();
+      const rx = point ? (point.x - rect.left) / rect.width : 0.5;
+      const ry = point ? (point.y - rect.top) / rect.height : 0.5;
+      lightbox.classList.add('is-zoomed');
+      lbImg.style.width = fitWidth * ZOOM + 'px';
+      // Centra la vista en el punto pulsado
+      lbStage.scrollLeft = lbImg.offsetWidth * rx - lbStage.clientWidth / 2;
+      lbStage.scrollTop = lbImg.offsetHeight * ry - lbStage.clientHeight / 2;
+    } else {
+      lightbox.classList.remove('is-zoomed');
+      lbImg.style.width = '';
+    }
+    lbZoom.setAttribute('aria-pressed', String(on));
+  }
+
+  document.querySelectorAll('[data-zoom]').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const img = trigger.querySelector('img');
+      lastTrigger = trigger;
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt;
+      lbCaption.textContent = img.alt;
+      setZoom(false);
+      lightbox.showModal();
+      lbClose.focus();
+    });
+  });
+
+  lbStage.addEventListener('click', (e) => {
+    if (e.target === lbImg) {
+      setZoom(!lightbox.classList.contains('is-zoomed'), { x: e.clientX, y: e.clientY });
+    } else if (!lightbox.classList.contains('is-zoomed')) {
+      lightbox.close(); // clic fuera de la imagen
+    }
+  });
+  lbZoom.addEventListener('click', () => setZoom(!lightbox.classList.contains('is-zoomed')));
+  lbClose.addEventListener('click', () => lightbox.close());
+  lightbox.addEventListener('close', () => {
+    setZoom(false);
+    if (lastTrigger) lastTrigger.focus();
   });
 
   /* ---------- Copiar correo ---------- */
