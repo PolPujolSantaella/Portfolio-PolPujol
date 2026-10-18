@@ -1,219 +1,377 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pol Pujol Santaella — Ciberseguridad, datos e IA</title>
+    <meta name="description" content="Portfolio de Pol Pujol Santaella, ingeniero informático. Ciberseguridad, datos e inteligencia artificial: proyectos, trayectoria y contacto." />
+    <meta name="author" content="Pol Pujol Santaella" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0b0d0c" />
+    <link rel="canonical" href="https://polpujolsantaella.github.io/Portfolio-PolPujol/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Pol Pujol Santaella — Ciberseguridad, datos e IA" />
+    <meta property="og:description" content="Proyectos, trayectoria y contacto de Pol Pujol Santaella." />
+    <meta property="og:url" content="https://polpujolsantaella.github.io/Portfolio-PolPujol/" />
+    <meta property="og:image" content="https://polpujolsantaella.github.io/Portfolio-PolPujol/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale:alternate" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="styles/styles.css" />
-    <title>Portfolio</title>
+
+    <!-- Aplica el tema antes del primer pintado para evitar parpadeos -->
+    <script>
+      (function () {
+        var theme;
+        try { theme = localStorage.getItem('theme'); } catch (e) {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.classList.add('js');
+      })();
+    </script>
   </head>
-  <body class="dark">
-    <header class="header">
-        <div class="switches">
-            <div id="toggle-theme" class="toggle-theme">
-                <img id="toggle-icon" src="icons/moon.svg" alt="icon theme" class="toggle-theme__icon" />
-                <p id="toggle-text" class="toggle-theme__text">Mode</p>
-            </div>
+
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="#top" aria-label="Pol Pujol Santaella — inicio">
+          <span class="brand__mark" aria-hidden="true">pp</span>
+          <span class="brand__name">Pol Pujol Santaella</span>
+        </a>
+
+        <nav class="nav" id="nav" aria-label="Principal" data-i18n-attr="aria-label:nav.label">
+          <ul class="nav__list">
+            <li><a href="#proyectos"><span class="nav__num">01</span><span data-i18n="nav.projects">Proyectos</span></a></li>
+            <li><a href="#trayectoria"><span class="nav__num">02</span><span data-i18n="nav.path">Trayectoria</span></a></li>
+            <li><a href="#voluntariado"><span class="nav__num">03</span><span data-i18n="nav.volunteering">Voluntariado</span></a></li>
+            <li><a href="#contacto"><span class="nav__num">04</span><span data-i18n="nav.contact">Contacto</span></a></li>
+          </ul>
+        </nav>
+
+        <div class="controls">
+          <button class="control control--lang" id="lang-toggle" type="button" aria-label="Switch to English" lang="en">EN</button>
+          <button class="control control--theme" id="theme-toggle" type="button" aria-label="Cambiar a tema claro" data-label-light="theme.toLight" data-label-dark="theme.toDark">
+            <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" /><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" /></svg>
+            <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z" /></svg>
+          </button>
+          <button class="control control--menu" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav">
+            <span class="visually-hidden" data-i18n="nav.menu">Menú</span>
+            <span class="menu-icon" aria-hidden="true"><span></span><span></span></span>
+          </button>
         </div>
-        <div id="flags" class="flags">
-          <div class="flags__item" data-language="es">
-            <img src="icons/spain.svg" alt="">
-          </div>
-          <div class="flags__item" data-language="en">
-            <img src="icons/UK.svg" alt="">
-          </div>
-          <div class="flags__item" data-language="cat">
-            <img src="icons/cat.svg" alt="">
-          </div>
-          <div class="flags__item" data-language="ger">
-            <img src="icons/ger.svg" alt="">
-          </div>
-        </div>
-        <div id="toggle-colors" class="colors">
-          <div data-color="hsl(214, 84%, 56%)" class="colors__item colors__item--blue"></div>
-          <div data-color="hsl(150, 84%, 56%)" class="colors__item colors__item--green"></div>
-          <div data-color="hsl(276, 84%, 56%)" class="colors__item colors__item--purple"></div>
-          <div data-color="hsl(46, 84%, 56%)" class="colors__item colors__item--orange"></div>
-        </div>
+      </div>
     </header>
-    <main class="main">
-      <section class="column column--left">
-        <!-- Profile Card -->
-        <article class="card card--profile">
-          <div class="card__image-container">
-            <img src="img/Pol.jpg" alt="">
-          </div>
-          <div class="card__header">
-            <h2 class="card__title">Pol Pujol Santaella</h2>
-            <p class="card__subtitle" data-section="profile" data-value="rol">Desarrollador Software</p>
-          </div>
-          <div class="card__body">
-            <div class="card__link">
-              <i class="fas fa-envelope icon"></i>
-              <a href="mailto:pol.pujol.santaella@gmail.com">pol.pujol.santaella@gmail.com</a>
+
+    <main id="main">
+      <!-- ============ HERO ============ -->
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="container hero__grid">
+          <div class="hero__text">
+            <p class="eyebrow reveal">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span data-i18n="hero.now">Ahora — Cyber Strategy Analyst en Deloitte</span>
+            </p>
+
+            <h1 class="hero__title reveal" id="hero-title">
+              Pol Pujol<br /><em>Santaella</em>
+            </h1>
+
+            <p class="hero__lead reveal" data-i18n-html="hero.lead">
+              Ingeniero informático. Trabajo entre la <mark>ciberseguridad</mark>, los <mark>datos</mark> y la <mark>inteligencia artificial</mark>.
+            </p>
+
+            <blockquote class="hero__quote reveal">
+              <p data-i18n="hero.quote">«Una persona alegre, proactiva y con muchas ganas de aprender de todo y de todos.»</p>
+            </blockquote>
+
+            <div class="hero__actions reveal">
+              <a class="button button--primary" href="#proyectos">
+                <span data-i18n="hero.ctaProjects">Ver proyectos</span>
+                <span aria-hidden="true">↓</span>
+              </a>
+              <a class="button button--ghost" href="#contacto" data-i18n="hero.ctaContact">Contactar</a>
             </div>
-            <div class="card__link">
-              <i class="fas fa-phone-alt icon"></i>
-              <a href="tel:616038877">+34 616038877</a>
-              <p class="card__text" data-section="profile" data-value="description">
-                👋 Soy estudiante de cuarto año de Ingeniería Informática en la URV, apasionado por la tecnología y en constante búsqueda de nuevos desafíos. Mi objetivo es aplicar mis conocimientos y habilidades en un entorno profesional donde pueda contribuir al desarrollo de soluciones innovadoras.
-                Mis intereses se centran en el desarrollo de software, la inteligencia artificial y la computación en la nube. A lo largo de mi carrera académica, he adquirido una sólida formación en programación, análisis de datos, así como experiencia práctica en diversos proyectos universitarios.
+          </div>
+
+          <!--
+            FOTO PERSONAL
+            Sustituye el archivo assets/img/pol.jpg (retrato vertical 4:5, ~900×1125 px, < 200 KB).
+            Mientras no exista, se muestra el marcador de posición.
+          -->
+          <figure class="hero__photo media reveal">
+            <img src="assets/img/pol.jpg" width="900" height="1125" alt="Retrato de Pol Pujol Santaella" data-i18n-attr="alt:hero.photoAlt" decoding="async" />
+            <figcaption class="media__placeholder" aria-hidden="true">
+              <span class="media__placeholder-label">assets/img/pol.jpg</span>
+              <span class="media__placeholder-hint">4:5 · 900 × 1125</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="container">
+          <ol class="trajectory reveal" aria-label="Recorrido" data-i18n-attr="aria-label:hero.trajectoryLabel">
+            <li data-i18n="hero.t1">Datos</li>
+            <li data-i18n="hero.t2">IA</li>
+            <li data-i18n="hero.t3">Investigación</li>
+            <li data-i18n="hero.t4">Ciberseguridad</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============ 01 · PROYECTOS ============ -->
+      <section class="section section--projects" id="proyectos" aria-labelledby="projects-title">
+        <div class="container">
+          <header class="section__head reveal">
+            <span class="section__num">01</span>
+            <h2 class="section__title" id="projects-title" data-i18n="projects.title">Proyectos</h2>
+            <p class="section__intro" data-i18n="projects.intro">Dos proyectos que resumen hacia dónde voy: inteligencia artificial con impacto real, en investigación y en competición.</p>
+          </header>
+
+          <!-- Proyecto 01 · DemDetect -->
+          <article class="project" aria-labelledby="p1-title">
+            <!--
+              IMAGEN DEMDETECT
+              Coloca la imagen en assets/img/demdetect.jpg (horizontal 16:10, ~1600×1000 px, < 300 KB).
+            -->
+            <figure class="project__media media reveal">
+              <img src="assets/img/demdetect.jpg" width="1600" height="1000" alt="Proyecto DemDetect" data-i18n-attr="alt:p1.imgAlt" loading="lazy" decoding="async" />
+              <figcaption class="media__placeholder" aria-hidden="true">
+                <span class="media__placeholder-label">assets/img/demdetect.jpg</span>
+                <span class="media__placeholder-hint">16:10 · 1600 × 1000</span>
+              </figcaption>
+            </figure>
+
+            <div class="project__body">
+              <p class="project__index reveal" aria-hidden="true">P—01</p>
+              <p class="project__kicker reveal" data-i18n="p1.kicker">Investigación · Trabajo de Fin de Máster · URV</p>
+              <h3 class="project__title reveal" id="p1-title">DemDetect</h3>
+              <p class="project__summary reveal" data-i18n="p1.summary">Inteligencia artificial para la detección temprana de la demencia mediante olfatometría.</p>
+
+              <dl class="project__facts reveal">
+                <div><dt data-i18n="p1.factRole">Rol</dt><dd>Junior Data Scientist Researcher</dd></div>
+                <div><dt data-i18n="p1.factCenter">Centro</dt><dd>TecnATox · URV</dd></div>
+                <div><dt data-i18n="p1.factGroup">Grupo</dt><dd>Laboratori de Toxicologia i Salut Mediambiental</dd></div>
+              </dl>
+
+              <div class="project__columns">
+                <div class="reveal">
+                  <h4 class="project__label" data-i18n="p1.contextTitle">El proyecto</h4>
+                  <p data-i18n="p1.context">DemDetect es un proyecto de investigación que desarrolla un modelo basado en inteligencia artificial para detectar la demencia de forma temprana a partir de pruebas de olfatometría.</p>
+                </div>
+                <div class="reveal">
+                  <h4 class="project__label" data-i18n="p1.roleTitle">Mi aportación</h4>
+                  <!-- PENDIENTE: describe tu contribución personal (qué hiciste tú dentro del proyecto). -->
+                  <p class="todo" data-i18n="p1.role">Pendiente de redactar: tu contribución concreta dentro del proyecto.</p>
+                </div>
+              </div>
+
+              <a class="link-arrow reveal" href="https://www.tecnatox.urv.cat/ca/recerca/demdetect/" target="_blank" rel="noopener noreferrer">
+                <span data-i18n="p1.link">Web del proyecto</span>
+                <span aria-hidden="true">↗</span>
+                <span class="visually-hidden" data-i18n="newTab">(se abre en una pestaña nueva)</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Proyecto 02 · More Than a Hack -->
+          <article class="project project--reverse" aria-labelledby="p2-title">
+            <!--
+              IMAGEN MORE THAN A HACK
+              Coloca la imagen en assets/img/more-than-a-hack.jpg (horizontal 16:10, ~1600×1000 px, < 300 KB).
+            -->
+            <figure class="project__media media reveal">
+              <img src="assets/img/more-than-a-hack.jpg" width="1600" height="1000" alt="Equipo en el hackathon More Than a Hack, Talent Arena 2026" data-i18n-attr="alt:p2.imgAlt" loading="lazy" decoding="async" />
+              <figcaption class="media__placeholder" aria-hidden="true">
+                <span class="media__placeholder-label">assets/img/more-than-a-hack.jpg</span>
+                <span class="media__placeholder-hint">16:10 · 1600 × 1000</span>
+              </figcaption>
+              <span class="badge" aria-hidden="true"><span class="badge__big">3.º</span><span data-i18n="p2.badge">puesto</span></span>
+            </figure>
+
+            <div class="project__body">
+              <p class="project__index reveal" aria-hidden="true">P—02</p>
+              <p class="project__kicker reveal" data-i18n="p2.kicker">Hackathon · Talent Arena 2026</p>
+              <h3 class="project__title reveal" id="p2-title">More Than a Hack</h3>
+              <p class="project__summary reveal" data-i18n="p2.summary">Tactical RAG: convertir datos complejos en decisiones tácticas en el fútbol.</p>
+
+              <ul class="stats reveal" aria-label="Resultados" data-i18n-attr="aria-label:p2.statsLabel">
+                <li><strong>3.500+</strong><span data-i18n="p2.s1">solicitudes internacionales</span></li>
+                <li><strong>3 %</strong><span data-i18n="p2.s2">de selección</span></li>
+                <li><strong>5</strong><span data-i18n="p2.s3">finalistas</span></li>
+                <li class="stats__highlight"><strong>3.º</strong><span data-i18n="p2.s4">puesto final</span></li>
+              </ul>
+
+              <div class="project__columns">
+                <div class="reveal">
+                  <h4 class="project__label" data-i18n="p2.contextTitle">El reto</h4>
+                  <p data-i18n="p2.context">Hacer que los datos sean accesibles y útiles en contextos tácticos reales. En equipo, desarrollamos un sistema que transforma datos complejos en información útil para la toma de decisiones tácticas, mediante una arquitectura Tactical RAG.</p>
+                </div>
+                <div class="reveal">
+                  <h4 class="project__label" data-i18n="p2.roleTitle">Mi aportación</h4>
+                  <!-- PENDIENTE: describe tu papel dentro del equipo. -->
+                  <p class="todo" data-i18n="p2.role">Pendiente de redactar: tu papel dentro del equipo.</p>
+                </div>
+              </div>
+
+              <p class="project__org reveal">
+                <span data-i18n="p2.org">Organizado por</span> Barça Innovation Hub, Metrica Sports &amp; Mobile World Capital Barcelona.
               </p>
             </div>
-          </div>
-        </article>
-        <article class="card card--experience">
-          <h2 class="card__title">Experiencia</h2>
-          <div class="experience">
-            <img src="img/logo0.jpeg" alt="" class="experience__image">
-            <div class="experience__info">
-              <h3 class="experience__job" data-section="experience" data-value="first-job-title">Monitor Fútbol</h3>
-              <p class="experience__description" data-section="experience" data-value="first-job-description">Pare Manyanet Reus, Tarragona</p>
-              <p class="experience__time" data-section="experience" data-value="first-job-dates">Ago.2017-Ago.2019 (18 meses)</p>
-            </div>
-          </div>
-          <div class="experience">
-            <img src="img/logo1.jpg" alt="" class="experience__image">
-            <div class="experience__info">
-              <h3 class="experience__job" data-section="experience" data-value="second-job-title">Mozo de Almacén</h3>
-              <p class="experience__description" data-section="experience" data-value="second-job-description">Borges S.A. (Carrer de Flix, 29 Reus, Tarragona)</p>
-              <p class="experience__time" data-section="experience" data-value="second-job-dates">Jul-Ago 2021 (1 mes)</p>
-            </div>
-          </div>
-          <div class="experience">
-            <img src="img/logo2.jpg" alt="" class="experience__image">
-            <div class="experience__info">
-              <h3 class="experience__job" data-section="experience" data-value="last-job-title">Reponedor/Cajero Tienda Alimentación</h3>
-              <p class="experience__description" data-section="experience" data-value="last-job-description">SPAR (100 Salou, C/Ponent)</p>
-              <p class="experience__time" data-section="experience" data-value="last-job-dates">Jul-Sept 2022 y 2023 (6 meses)</p>
-            </div>
-          </div>
-        </article>
+          </article>
+        </div>
       </section>
-      <section class="column column--right">  
-        <article class="card">
-          <h2 class="card__title">Back-End</h2>
-          <small data-section="profile" data-value="years">Años de experiencia</small>
-          <div class="skills">
-            <div class="skills__header">
-              <span class="skills__start-level">0</span>
-              <span class="skills__start-level">4</span>
+
+      <!-- ============ 02 · TRAYECTORIA ============ -->
+      <section class="section" id="trayectoria" aria-labelledby="path-title">
+        <div class="container">
+          <header class="section__head reveal">
+            <span class="section__num">02</span>
+            <h2 class="section__title" id="path-title" data-i18n="path.title">Trayectoria</h2>
+            <p class="section__intro" data-i18n="path.intro">Del análisis de datos a la ciberseguridad, pasando por la inteligencia artificial y la investigación.</p>
+          </header>
+
+          <div class="split">
+            <div>
+              <h3 class="split__label reveal" data-i18n="path.experience">Experiencia</h3>
+              <ol class="timeline">
+                <li class="timeline__item reveal">
+                  <p class="timeline__date"><span data-i18n="path.e1date">Sep. 2026 — Actualidad</span></p>
+                  <div>
+                    <h4 class="timeline__role">Cyber Strategy Analyst</h4>
+                    <p class="timeline__org">Deloitte</p>
+                    <!-- PENDIENTE: descripción breve del puesto (opcional). -->
+                  </div>
+                </li>
+                <li class="timeline__item reveal">
+                  <!-- PENDIENTE: confirma las fechas de esta etapa. -->
+                  <p class="timeline__date"><span class="todo" data-i18n="path.e2date">Fechas por confirmar</span></p>
+                  <div>
+                    <h4 class="timeline__role">Junior Data Scientist Researcher</h4>
+                    <p class="timeline__org">Universitat Rovira i Virgili · TecnATox</p>
+                    <p class="timeline__desc" data-i18n="path.e2desc">Trabajo de Fin de Máster en el Laboratori de Toxicologia i Salut Mediambiental, dentro del proyecto DemDetect.</p>
+                  </div>
+                </li>
+                <li class="timeline__item reveal">
+                  <p class="timeline__date"><span data-i18n="path.e3date">Nov. 2024 — May. 2025</span></p>
+                  <div>
+                    <h4 class="timeline__role">SAP Data Analyst Intern</h4>
+                    <p class="timeline__org">Inetum</p>
+                    <p class="timeline__desc" data-i18n="path.e3desc">Prácticas en el ámbito del análisis de datos y SAP.</p>
+                  </div>
+                </li>
+              </ol>
             </div>
-            <div class="skills__item">
-              <p class="skills__tech">PYTHON</p>
-              <div class="skills__bar skills__bar--70"></div>
-            </div>
-            <div class="skills__item">
-              <p class="skills__tech">JAVA</p>
-              <div class="skills__bar skills__bar--60"></div>
-            </div>
-            <div class="skills__item">
-              <p class="skills__tech">C</p>
-              <div class="skills__bar skills__bar--60"></div>
-            </div>
-            <div class="skills__item">
-              <p class="skills__tech">SHELL SCRIPT</p>
-               <div class="skills__bar skills__bar--30"></div>
-            </div>
-          </div>
-        </article>
-        <article class="card">
-          <h2 class="card__title">Front-End</h2>
-          <small data-section="profile" data-value="years">Años de experiencia</small>
-          <div class="skills">
-            <div class="skills__header">
-              <span class="skills__start-level">0</span>
-              <span class="skills__start-level">4</span>
-            </div>
-            <div class="skills__item">
-               <p class="skills__tech">HTML</p>
-              <div class="skills__bar skills__bar--30"></div>
-            </div>
-            <div class="skills__item">
-              <p class="skills__tech">JAVASCRIPT</p>
-              <div class="skills__bar skills__bar--30"></div>
-            </div>
-            <div class="skills__item">
-              <p class="skills__tech">CSS</p>
-              <div class="skills__bar skills__bar--20"></div>
-            </div>
-          </div>
-        </article>
-        <article class="card">
-          <h2 class="card__title">IDEs</h2>
-          <small data-section="profile" data-value="years">Años de experiencia</small>
-          <div class="skills">
-            <div class="skills__header">
-              <span class="skills__start-level">0</span>
-              <span class="skills__start-level">4</span>
-            </div>
-            <div class="skills__item">
-              <p class="skills__tech">VS Code</p>
-              <div class="skills__bar skills__bar--90"></div>
-            </div>
-            <div class="skills__item">
-               <p class="skills__tech">Eclipse</p>
-              <div class="skills__bar skills__bar--70"></div>
-            </div>
-            <div class="skills__item">
-              <p class="skills__tech">IntelliJ IDEA</p>
-              <div class="skills__bar skills__bar--40"></div>
-            </div>
-            <div class="skills__item">
-              <p class="skills__tech">NetBeans</p>
-              <div class="skills__bar skills__bar--40"></div>
-            </div>
-          </div>
-        </article>
-        <article class="card card--project">
-          <div class="card__image-container">
-            <img src="img/project.png" alt="" class="card__image">
-          </div>
-          <div class="project">
-            <div class="project__tags">
-              <span class="project__tag">Design</span>
-              <span class="project__tag">Communication</span>
-              <span class="project__tag">Web</span>
-              <span class="project__tag">Scripting</span>
-            </div>
-            <h2 class="card__title" data-section="projects" data-value="first-project-title">GitHub Profile</h2>
-            <p class="card__text" data-section="projects" data-value="first-project-description">Aquí puedes ver todos los proyectos que he hecho durante mi formación académica
-                i mucho más. Estos proyectos me han ayudado a desarrollar sobre Design Patterns, Communication Patterns, Web Development, Data Structures, Administration
-                Systems and Networks...
-            </p> 
-            <div class="buttons">
-              <a href="https://github.com/PolPujolSantaella" class="button button--primary" target="_blank" rel="noopener noreferrer">Link</a>
+
+            <div>
+              <h3 class="split__label reveal" data-i18n="path.education">Formación</h3>
+              <ol class="timeline">
+                <li class="timeline__item reveal">
+                  <p class="timeline__date">2025 — 2026</p>
+                  <div>
+                    <h4 class="timeline__role" data-i18n="path.ed1">Máster en Ingeniería de la Seguridad Informática e Inteligencia Artificial</h4>
+                    <p class="timeline__org">Universitat Rovira i Virgili</p>
+                  </div>
+                </li>
+                <li class="timeline__item reveal">
+                  <p class="timeline__date">2021 — 2025</p>
+                  <div>
+                    <h4 class="timeline__role" data-i18n="path.ed2">Grado en Ingeniería Informática</h4>
+                    <p class="timeline__org">Universitat Rovira i Virgili · Tarragona</p>
+                  </div>
+                </li>
+              </ol>
+
+              <h3 class="split__label reveal" data-i18n="path.areas">Áreas</h3>
+              <ul class="tags reveal">
+                <li data-i18n="path.a1">Ciberseguridad</li>
+                <li data-i18n="path.a2">Inteligencia artificial</li>
+                <li data-i18n="path.a3">Análisis de datos</li>
+                <li>SAP</li>
+              </ul>
+
+              <h3 class="split__label reveal">Stack</h3>
+              <!-- PENDIENTE: añade aquí las tecnologías que dominas, una por <li>. -->
+              <ul class="tags reveal">
+                <li class="todo" data-i18n="path.stackTodo">Por definir tras revisar tu perfil técnico</li>
+              </ul>
             </div>
           </div>
-        </article>
-        <article class="card card--project">
-          <div class="card__image-container">
-            <img src="img/project2.jpg" alt="" class="card__image">
+        </div>
+      </section>
+
+      <!-- ============ 03 · VOLUNTARIADO ============ -->
+      <section class="section" id="voluntariado" aria-labelledby="vol-title">
+        <div class="container">
+          <header class="section__head reveal">
+            <span class="section__num">03</span>
+            <h2 class="section__title" id="vol-title" data-i18n="vol.title">Voluntariado</h2>
+          </header>
+
+          <article class="volunteer reveal" aria-labelledby="vol1-title">
+            <p class="volunteer__kicker">URV Solidària · Labdoo</p>
+            <h3 class="volunteer__title" id="vol1-title">SustainComp</h3>
+            <p class="volunteer__text" data-i18n="vol.text">Recogemos hardware informático en desuso y lo ponemos de nuevo en funcionamiento, en colaboración con la plataforma Labdoo. Así, colectivos y personas sin acceso a la tecnología adecuada pueden usarlo para tareas educativas, consultas sanitarias o gestiones del día a día.</p>
+            <a class="link-arrow" href="https://www.urv.cat/ca/vida-campus/col-labora-a-la-urv/urv-solidaria/voluntariat/tecnologic/" target="_blank" rel="noopener noreferrer">
+              <span data-i18n="vol.link">Voluntariado tecnológico URV</span>
+              <span aria-hidden="true">↗</span>
+              <span class="visually-hidden" data-i18n="newTab">(se abre en una pestaña nueva)</span>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ 04 · CONTACTO ============ -->
+      <section class="section section--contact" id="contacto" aria-labelledby="contact-title">
+        <div class="container">
+          <header class="section__head reveal">
+            <span class="section__num">04</span>
+            <h2 class="section__title" id="contact-title" data-i18n="contact.title">Contacto</h2>
+          </header>
+
+          <p class="contact__big reveal" data-i18n-html="contact.big">¿Hablamos? <em>Siempre con ganas de aprender algo nuevo.</em></p>
+
+          <div class="contact__row reveal">
+            <a class="contact__email" href="mailto:pol.pujol.santaella@gmail.com">pol.pujol.santaella@gmail.com</a>
+            <button class="control control--copy" id="copy-email" type="button" data-email="pol.pujol.santaella@gmail.com">
+              <span data-i18n="contact.copy">Copiar</span>
+            </button>
+            <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
           </div>
-          <div class="project">
-            <div class="project__tags">
-              <span class="project__tag">Team Work</span>
-              <span class="project__tag">Volunteering</span>
-              <span class="project__tag">Repairing</span>
-            </div>
-            <h2 class="card__title" data-section="projects" data-value="second-project-title">Proyecto SustainComp</h2>
-            <p class="card__text" data-section="projects" data-value="second-project-description">Mediante el proyecto SustainComp (nuestra colaboración con la Plataforma Labdoo) 
-            recogemos hardware informático en desuso y lo ponemos nuevamente en funcionamiento. De esta manera, lo pueden volver a utilizar colectivos y personas que no disponen 
-            de la tecnología adecuada para desarrollar tareas educativas, consultas sanitarias o acceder a diferentes portales útiles para las necesidades del día a día.
-            </p> 
-            <div class="buttons">
-              <a href="https://www.urv.cat/ca/vida-campus/col-labora-a-la-urv/urv-solidaria/voluntariat/tecnologic/" class="button button--primary" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-          </div>
-        </article>
+
+          <ul class="contact__links reveal">
+            <li>
+              <a class="link-arrow" href="https://www.linkedin.com/in/polpujolsantaella/" target="_blank" rel="noopener noreferrer">
+                LinkedIn <span aria-hidden="true">↗</span>
+                <span class="visually-hidden" data-i18n="newTab">(se abre en una pestaña nueva)</span>
+              </a>
+            </li>
+            <!--
+              CURRÍCULUM (cuando lo tengas): guarda el PDF en assets/cv-pol-pujol-santaella.pdf y descomenta:
+              <li><a class="link-arrow" href="assets/cv-pol-pujol-santaella.pdf" download><span data-i18n="contact.cv">Descargar CV</span> <span aria-hidden="true">↓</span></a></li>
+            -->
+          </ul>
+        </div>
       </section>
     </main>
-    <footer>
-      <div class="footer">
-        <p class="footer__text">&copy; 2024 PolPujolSantaella. | Contacte <a href="mailto:pol.pujol.santaella@gmail.com">pol.pujol.santaella@gmail.com</a></p>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p>© <span id="year">2026</span> Pol Pujol Santaella</p>
+        <a href="#top" class="site-footer__top"><span data-i18n="footer.top">Volver arriba</span> <span aria-hidden="true">↑</span></a>
       </div>
     </footer>
+
+    <script src="scripts/i18n.js"></script>
     <script src="scripts/scripts.js"></script>
   </body>
 </html>
