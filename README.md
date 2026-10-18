@@ -21,15 +21,15 @@ assets/og-image.png   Imagen para redes sociales (1200×630)
 
 Busca `PENDIENTE` en `index.html` y `Pendiente`/`To be` en `scripts/i18n.js`. Los textos pendientes se ven en la web con estilo atenuado y borde discontinuo (clase `todo`); al sustituirlos, elimina esa clase.
 
-## Añadir imágenes
+## Imágenes
 
-Guarda los archivos con estos nombres exactos; mientras no existan se muestra un marcador de posición:
+Para sustituir una imagen, reemplaza el archivo manteniendo el nombre y actualiza `width`/`height` en `index.html`. Las imágenes de proyectos se pueden ampliar (clic → visor; clic en la imagen o botón «Zoom» → ampliación).
 
-| Archivo | Formato recomendado |
-|---|---|
-| `assets/img/pol.jpg` | Retrato vertical 4:5, ~900×1125 px, < 200 KB |
-| `assets/img/demdetect.jpg` | Horizontal 16:10, ~1600×1000 px, < 300 KB |
-| `assets/img/more-than-a-hack.jpg` | Horizontal 16:10, ~1600×1000 px, < 300 KB |
+| Archivo | Uso | Recomendado |
+|---|---|---|
+| `assets/img/pol.jpg` | Hero, cuadrada | ≥ 800×800 px, < 200 KB |
+| `assets/img/demdetect.jpg` | Vertical; recorte 4:5 desde arriba, completa en el visor | ≥ 1000 px de ancho, < 300 KB |
+| `assets/img/more-than-a-hack.jpg` | Horizontal 3:2 | ≥ 1500 px de ancho, < 300 KB |
 
 Para el CV, guarda `assets/cv-pol-pujol-santaella.pdf` y descomenta el enlace de la sección de contacto.
 
